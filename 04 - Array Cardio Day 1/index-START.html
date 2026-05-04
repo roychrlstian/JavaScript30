@@ -38,29 +38,46 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const inventors1500 = inventors.filter(invent => invent.year < 1600 && invent.year >= 1500);
+    console.table(inventors1500);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const inventorsName = inventors.map(invent => `${invent.first} ${invent.last}`)
+    console.table(inventorsName);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    const sortedInventors = inventors.sort((a,b) => a.year - b.year);
+    console.log(sortedInventors);
+    
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const inventorsLife = inventors.reduce((total, inventor) => total + (inventor.passed - inventor.year) ,0);
+    console.log("total: "+inventorsLife);
 
     // 5. Sort the inventors by years lived
+    const sortedByYears = inventors.sort((a,b)=>(a.passed - a.year) - (b.passed - b.year));
+    console.table(sortedByYears);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    // const category = document.querySelector('.mw-category');
+    // const links = [...category.querySelectorAll('a')];
+    // const filtered = links.map(link => link.textContent).filter(paris => paris.toLowerCase().includes("de"));
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const sortLastName = people.map(name => name.split(" "))
+                                .sort((a,b) => a[1].toLowerCase() > b[1].toLowerCase() ? 1:-1)
+                                .map(name => name.join(" "));
+    console.log(sortLastName);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const sortedData = data.reduce((total, item) => {total[item] = (total[item] || 0) + 1; return total},{})
+    console.log(sortedData);
   </script>
 </body>
 </html>
